@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VIDAL", "VIDAL\VIDAL.vcxproj", "{1AF5132D-46E5-445C-B1B6-273AAF24A992}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SFML", "SFML\SFML.vcxproj", "{D43EFDD4-5AED-483A-9B34-992D064C82E6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -33,14 +31,6 @@ Global
 		{1AF5132D-46E5-445C-B1B6-273AAF24A992}.Release|x64.Build.0 = Release|x64
 		{1AF5132D-46E5-445C-B1B6-273AAF24A992}.Release|x86.ActiveCfg = Release|Win32
 		{1AF5132D-46E5-445C-B1B6-273AAF24A992}.Release|x86.Build.0 = Release|Win32
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Debug|x64.ActiveCfg = Debug|x64
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Debug|x64.Build.0 = Debug|x64
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Debug|x86.ActiveCfg = Debug|Win32
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Debug|x86.Build.0 = Debug|Win32
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Release|x64.ActiveCfg = Release|x64
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Release|x64.Build.0 = Release|x64
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Release|x86.ActiveCfg = Release|Win32
-		{D43EFDD4-5AED-483A-9B34-992D064C82E6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
