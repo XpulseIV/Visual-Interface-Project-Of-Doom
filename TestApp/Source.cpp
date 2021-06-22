@@ -10,7 +10,7 @@ int main()
 
 	std::vector<VIDAL::Text> texts;
 
-	VIDAL::Text lel = {
+	const VIDAL::Text lel = {
 		"lel", 48, 0, 0, 255, 255
 	};
 	

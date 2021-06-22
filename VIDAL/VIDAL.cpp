@@ -71,8 +71,8 @@ namespace VIDAL
 			render_window.clear(sf::Color::Black);
 
 			// Here Render Stuff
-			for (auto text : application.sfTexts)
-				render_window.draw(text);
+			render_window.draw(application.sfTexts[0]);
+
 			render_window.display();
 		}
 	}
