@@ -7,7 +7,15 @@ int main()
 	window.width = 800;
 	window.height = 600;
 	window.title = "LOL";
+
+	std::vector<VIDAL::Text> texts;
+
+	VIDAL::Text lel = {
+		"lel", 48, 0, 0, 255, 255
+	};
 	
-	VIDAL::Application::Initialize(window, std::vector<VIDAL::Text> { });
+	texts.push_back(lel);
+	
+	VIDAL::Application::Initialize(window, texts);
 	return 0;
 }
