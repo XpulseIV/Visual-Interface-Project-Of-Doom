@@ -4,8 +4,3 @@
 
 #include <string>
 #include <iostream>
-
-void VIDAL::Log(std::string message)
-{
-	std::cout << message << std::endl;
-}
