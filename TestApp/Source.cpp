@@ -11,15 +11,10 @@ int main()
 	std::vector<VIDAL::Text> texts;
 
 	const VIDAL::Text lel = {
-		"lel", 48, 0, 0, 255, 255, 0, 0
-	};
-
-	const VIDAL::Text lol{
-		"lol", 50, 0, 255, 0, 255, 50, 50
+		"lel", 48, 0, 0, 255, 255
 	};
 	
 	texts.push_back(lel);
-	texts.push_back(lol);
 	
 	VIDAL::Application::Initialize(window, texts);
 	return 0;

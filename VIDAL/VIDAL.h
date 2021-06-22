@@ -32,7 +32,6 @@ namespace VIDAL
 	{
 	public:
 		static void Initialize(const Window& window, const std::vector<Text>& texts);
-		static std::vector<sf::Text> VidalTextToSfText(const std::vector<Text>& texts, sf::Font font);
 		
 		Window window;
 		std::vector<Text> texts;
