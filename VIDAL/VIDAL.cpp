@@ -22,15 +22,15 @@ namespace VIDAL
 		
 			std::vector<sf::Text> sfTexts;
 
+			sf::Font font;
+			if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
+			{
+				std::cout << "Failed to load font file\n";
+				exit(EXIT_FAILURE);
+			}
+		
 			for (const VIDAL::Text& t : application.texts)
 			{
-				sf::Font font;
-				if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
-				{
-					std::cout << "Failed to load font file\n";
-					exit(EXIT_FAILURE);
-				}
-
 				sf::Text text;
 				text.setFont(font);
 				text.setString(t.text);
@@ -71,7 +71,7 @@ namespace VIDAL
 			render_window.clear(sf::Color::Black);
 
 			// Here Render Stuff
-			render_window.draw(application.sfTexts[0]);
+			for (auto t : application.sfTexts) render_window.draw(t);
 
 			render_window.display();
 		}
