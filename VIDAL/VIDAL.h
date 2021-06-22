@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
 
 #include <vector>
 
@@ -18,16 +19,10 @@ namespace VIDAL
 		std::string title;
 	};
 
-	class Font
-	{
-	public:
-		std::string name, file_path;
-	};
-
 	class Text
 	{
+	public:
 		std::string text;
-		Font font;
 		int size;
 		Color color;
 		int x, y;
@@ -40,6 +35,7 @@ namespace VIDAL
 		
 		Window window;
 		std::vector<Text> texts;
+		std::vector<sf::Text> sfTexts;
 	
 	private:
 		static void Main_Loop(VIDAL::Application application);

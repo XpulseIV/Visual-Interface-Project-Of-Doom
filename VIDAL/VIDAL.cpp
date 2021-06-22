@@ -15,8 +15,34 @@ namespace VIDAL
 		Application application;
 		application.window = window; // Having a window is required
 		
-		if(!texts.empty())
+		// Loads all texts from std::vector<Text> to std::vector<sf::text> to be rendered later
+		
+		if (!texts.empty())
+			#pragma region loadTextObjects
 			application.texts = texts;
+
+			std::vector<sf::Text> sfTexts;
+
+			sf::Font font;
+			if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
+			{
+				std::cout << "Failed to load font file\n";
+				exit(EXIT_FAILURE);
+			}
+
+			for (const VIDAL::Text& t : application.texts)
+			{
+				sf::Text text;
+				text.setFont(font);
+				text.setString(t.text);
+				text.setCharacterSize(t.size);
+				text.setFillColor(sf::Color::Blue);
+				text.setPosition(t.x, t.y);
+
+				sfTexts.push_back(text);
+			}
+			application.sfTexts = sfTexts;
+			#pragma endregion
 		
 		Main_Loop(application);
 	}
@@ -25,20 +51,6 @@ namespace VIDAL
 	{
 		sf::RenderWindow render_window;
 		render_window.create(sf::VideoMode(application.window.width, application.window.height), application.window.title);
-
-		sf::Font font;
-		if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
-		{
-			std::cout << "Failed to load font file\n";
-			exit(EXIT_FAILURE);
-		}
-
-		sf::Text text;
-		text.setFont(font);
-		text.setString("LEL");
-		text.setCharacterSize(48);
-		text.setFillColor(sf::Color::Blue);
-		text.setPosition(0, 0);
 
 		while (render_window.isOpen())
 		{
@@ -60,7 +72,8 @@ namespace VIDAL
 
 			render_window.clear(sf::Color::Black);
 
-			render_window.draw(text);
+			// Here Render Stuff
+			for (auto t : application.sfTexts) render_window.draw(t);
 
 			render_window.display();
 		}
