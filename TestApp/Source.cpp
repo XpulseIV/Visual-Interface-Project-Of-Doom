@@ -1,4 +1,5 @@
 #include "VIDAL.h"
+#include <vector>
 
 int main()
 {
@@ -6,10 +7,7 @@ int main()
 	window.width = 800;
 	window.height = 600;
 	window.title = "LOL";
-
-	VIDAL::Application application;
-	application.window = window;
 	
-	VIDAL::Application::Initialize(application);
+	VIDAL::Application::Initialize(window, std::vector<VIDAL::Text> { });
 	return 0;
 }
