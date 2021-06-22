@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.vcxproj", "{0DF97141-85F7-472C-B152-1CCA270D5AB8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1AF5132D-46E5-445C-B1B6-273AAF24A992} = {1AF5132D-46E5-445C-B1B6-273AAF24A992}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VIDAL", "VIDAL\VIDAL.vcxproj", "{1AF5132D-46E5-445C-B1B6-273AAF24A992}"
 EndProject
