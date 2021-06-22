@@ -14,12 +14,13 @@ namespace VIDAL
 	{
 		Application application;
 		application.window = window; // Having a window is required
-
+		
 		// Loads all texts from std::vector<Text> to std::vector<sf::text> to be rendered later
 		
 		if (!texts.empty())
+			#pragma region loadTextObjects
 			application.texts = texts;
-		
+
 			std::vector<sf::Text> sfTexts;
 
 			sf::Font font;
@@ -28,7 +29,7 @@ namespace VIDAL
 				std::cout << "Failed to load font file\n";
 				exit(EXIT_FAILURE);
 			}
-		
+
 			for (const VIDAL::Text& t : application.texts)
 			{
 				sf::Text text;
@@ -41,6 +42,7 @@ namespace VIDAL
 				sfTexts.push_back(text);
 			}
 			application.sfTexts = sfTexts;
+			#pragma endregion
 		
 		Main_Loop(application);
 	}
