@@ -1,5 +1,6 @@
 #include "VIDAL.h"
 #include <vector>
+#include <iostream>
 
 int main()
 {
