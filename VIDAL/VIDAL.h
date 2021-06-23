@@ -7,6 +7,26 @@
 
 namespace VIDAL
 {
+	enum TextStyle
+	{
+		Regular,
+		Bold,
+		ItalicRegular,
+		ItalicBold,
+		UnderLinedRegular,
+		UnderLinedBold,
+		UnderLinedItalicRegular,
+		UnderLinedItalicBold,
+		StrikeThroughRegular,
+		StrikeThroughBold,
+		StrikeThroughItalicRegular,
+		StrikeThroughItalicBold,
+		StrikeThroughUnderLinedRegular,
+		StrikeThroughUnderLinedBold,
+		StrikeThroughUnderLinedItalicRegular,
+		StrikeThroughUnderLinedItalicBold
+	};
+	
 	struct Color
 	{
 		uint8_t r, b, g, ALPHA = 255;
@@ -61,7 +81,7 @@ namespace VIDAL
 		* 15 = StrikeThrough UnderLined Italic Bold
 		*/
 		
-		int style = 0;
+		TextStyle style = Regular;
 		Color color;
 		Color outline_color = {0, 0, 0, 0};
 		float outline_thickness = 0;

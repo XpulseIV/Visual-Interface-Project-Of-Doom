@@ -12,7 +12,7 @@ int main()
 
 	// Window Contents
 	const VIDAL::Text lol1 = {
-		.text = "lol", .size = 48, .style = 0, .color = {0, 0, 255, 255}, .pos = {0, 0}
+		.text = "lol", .size = 48, .style = VIDAL::Regular, .color = {0, 0, 255, 255}, .pos = {0, 0}
 	};
 	
 	const std::vector<VIDAL::Text> texts = {lol1};
