@@ -14,7 +14,7 @@ namespace VIDAL
 
 	struct Pos
 	{
-		float x, y;
+		float pos_x, pos_x;
 	};
 
 	struct Scale
