@@ -9,23 +9,46 @@ namespace VIDAL
 {
 	struct Color
 	{
-		uint8_t r, g, b, a = 255;
+		uint8_t R, B, G, ALPHA = 255;
+	};
+
+	struct Pos
+	{
+		uint8_t x, y;
+	};
+
+	struct Scale
+	{
+		float factorX, factorY;
+	};
+
+	struct Origin
+	{
+		float originX, originY;
 	};
 	
 	class Window
 	{
 	public:
-		unsigned int width, height;
 		std::string title;
+		unsigned int width, height;
 	};
 
 	class Text
 	{
 	public:
 		std::string text;
-		int size;
+		unsigned int size;
+		float lineSpacing;
+		float letterSpacing;
+		sf::Uint32 style;
 		Color color;
-		int x, y;
+		Color outlineColor;
+		float outlineThickness;
+		Pos pos;
+		float angle;
+		Scale scale;
+		Origin origin;
 	};
 	
 	class Application

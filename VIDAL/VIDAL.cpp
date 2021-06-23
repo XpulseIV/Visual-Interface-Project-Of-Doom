@@ -36,8 +36,18 @@ namespace VIDAL
 				text.setFont(font);
 				text.setString(t.text);
 				text.setCharacterSize(t.size);
-				text.setFillColor(sf::Color::Blue);
-				text.setPosition(t.x, t.y);
+				text.setLineSpacing(t.lineSpacing);
+				text.setLetterSpacing(t.letterSpacing);
+				text.setStyle(t.style);
+				
+				text.setFillColor(sf::Color(t.color.R, t.color.G, t.color.B, t.color.ALPHA));
+				
+				text.setOutlineColor(sf::Color(t.outlineColor.R, t.outlineColor.G, t.outlineColor.B, t.outlineColor.ALPHA));
+				text.setOutlineThickness(t.outlineThickness);
+				text.setPosition(t.pos.x, t.pos.y);
+				text.rotate(t.angle);
+				text.setScale(t.scale.factorX, t.scale.factorY);
+				text.setOrigin(t.origin.originX, t.origin.originY);
 
 				sfTexts.push_back(text);
 			}
