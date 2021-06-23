@@ -11,7 +11,7 @@
 namespace VIDAL
 {
 	// Application Methods
-	void Application::Initialize(const Window& window, const std::vector<Text::Text>& texts, const Text::Color windowColor)
+	void Application::Initialize(const Window& window, const std::vector<Text::Text>& texts, const Color windowColor)
 	{
 		Application application;
 		application.window = window; // Having a window is required
