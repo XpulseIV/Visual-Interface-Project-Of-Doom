@@ -3,17 +3,20 @@
 
 int main()
 {
+	// Window Settings
 	VIDAL::Window window;
 	window.width = 800;
 	window.height = 600;
-	window.title = "LOL";
+	window.title = "Test Window";
+	const VIDAL::Color windowColor = {0, 0, 0, 255};
 
-	const VIDAL::Text lol = {
-		"lol", 48, 10, 10
+	// Window Contents
+	const VIDAL::Text lol1 = {
+		.text = "lol", .size = 48, .style = 0, .color = {0, 0, 255, 255}, .pos = {0, 0}
 	};
 	
-	std::vector<VIDAL::Text> texts = {lol};
+	const std::vector<VIDAL::Text> texts = {lol1};
 	
-	VIDAL::Application::Initialize(window, texts);
+	VIDAL::Application::Initialize(window, texts, windowColor);
 	return 0;
 }

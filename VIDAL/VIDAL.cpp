@@ -6,19 +6,22 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 namespace VIDAL
 {
 	// Application Methods
-	void Application::Initialize(const Window& window, const std::vector<Text>& texts)
+	void Application::Initialize(const Window& window, const std::vector<Text>& texts, Color windowColor)
 	{
 		Application application;
 		application.window = window; // Having a window is required
+		application.window_color = windowColor; // Color of the window BackGround
 		
 		// Loads all texts from std::vector<Text> to std::vector<sf::text> to be rendered later
 		
 		if (!texts.empty())
 			#pragma region loadTextObjects
+	
 			application.texts = texts;
 
 			std::vector<sf::Text> sfTexts;
@@ -36,25 +39,26 @@ namespace VIDAL
 				text.setFont(font);
 				text.setString(t.text);
 				text.setCharacterSize(t.size);
-				text.setLineSpacing(t.lineSpacing);
-				text.setLetterSpacing(t.letterSpacing);
+				text.setLineSpacing(t.line_spacing);
+				text.setLetterSpacing(t.letter_spacing);
 				text.setStyle(t.style);
 				
-				text.setFillColor(sf::Color(t.color.R, t.color.G, t.color.B, t.color.ALPHA));
+				text.setFillColor(sf::Color(t.color.r, t.color.g, t.color.b, t.color.ALPHA));
 				
-				text.setOutlineColor(sf::Color(t.outlineColor.R, t.outlineColor.G, t.outlineColor.B, t.outlineColor.ALPHA));
-				text.setOutlineThickness(t.outlineThickness);
+				text.setOutlineColor(sf::Color(t.outline_color.r, t.outline_color.g, t.outline_color.b, t.outline_color.ALPHA));
+				text.setOutlineThickness(t.outline_thickness);
 				text.setPosition(t.pos.x, t.pos.y);
 				text.rotate(t.angle);
-				text.setScale(t.scale.factorX, t.scale.factorY);
-				text.setOrigin(t.origin.originX, t.origin.originY);
+				text.setScale(t.scale.factor_x, t.scale.factor_y);
+				text.setOrigin(t.origin.origin_x, t.origin.origin_y);
 
 				sfTexts.push_back(text);
 			}
-			application.sfTexts = sfTexts;
+		
+			application.sf_texts = sfTexts;
 			#pragma endregion
 		
-		Main_Loop(application);
+		Main_Loop(application); // Main program
 	}
 
 	void Application::Main_Loop(VIDAL::Application application)
@@ -64,27 +68,32 @@ namespace VIDAL
 
 		while (render_window.isOpen())
 		{
-			sf::Event event;
+			sf::Event event{};
 
 			while (render_window.pollEvent(event))
 			{
 				if (event.type == sf::Event::Closed)
 					render_window.close();
+				
 				if (event.type == sf::Event::Resized)
 				{
 					application.window.width = event.size.width;
 					application.window.height = event.size.height;
 
-					sf::FloatRect visibleArea(0, 0, application.window.width, application.window.height);
+					sf::FloatRect visibleArea(0, 0, static_cast<float>(application.window.width), static_cast<float>(application.window.height));
 					render_window.setView(sf::View(visibleArea));
 				}
 			}
 
-			render_window.clear(sf::Color::Black);
+			render_window.clear(sf::Color(application.window_color.r, application.window_color.g, application.window_color.b, application.window_color.ALPHA));
 
 			// Here Render Stuff
-			for (auto t : application.sfTexts) render_window.draw(t);
 
+			// TextRenderer
+			for (auto t : application.sf_texts) render_window.draw(t);
+			//
+
+			
 			render_window.display();
 		}
 	}
