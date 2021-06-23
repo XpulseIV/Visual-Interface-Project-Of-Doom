@@ -12,11 +12,14 @@ int main()
 	const VIDAL::Color windowColor = {0, 0, 0, 255};
 
 	// Window Contents
-	const VIDAL::Text lol1 = {
-		.text = "lol", .size = 48, .style = VIDAL::TextStyle::Regular, .color = {0, 0, 255, 255}, .pos = {0, 0}
+	const VIDAL::Text::Text lol1 = {
+		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 0, 255, 255}, .pos = {0, 0}
+	};
+	const VIDAL::Text::Text lol2 = {
+		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Bold, .color = {0, 0, 255, 255}, .pos = {0, 50}
 	};
 	
-	const std::vector<VIDAL::Text> texts = {lol1};
+	const std::vector texts = {lol1, lol2};
 	
 	VIDAL::Application::Initialize(window, texts, windowColor);
 	return 0;

@@ -3,6 +3,8 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 
+#include "Structs.h"
+
 #include <vector>
 
 namespace VIDAL
@@ -11,9 +13,32 @@ namespace VIDAL
 	{
 		
 	}
+
+	namespace Shape
+	{
+		class Shape
+		{
+			Color color = {};
+			
+		};
+		
+		class Rectangle : Shape
+		{
+			
+		};
+		class RegularPolygon : Shape
+		{
+			
+		};
+		class ConvexShape : Shape
+		{
+			
+		};
+	}
+	
 	namespace Text
 	{
-		enum TextStyle
+		enum Style
 		{
 			Regular,
 			Bold,
@@ -33,26 +58,6 @@ namespace VIDAL
 			StrikeThroughUnderLinedItalicBold
 		};
 
-		struct Color
-		{
-			uint8_t r, b, g, alpha = 255;
-		};
-
-		struct Pos
-		{
-			float x, y;
-		};
-
-		struct Scale
-		{
-			float factor_x, factor_y;
-		};
-
-		struct Origin
-		{
-			float x, y;
-		};
-
 		class Text
 		{
 		public:
@@ -61,7 +66,7 @@ namespace VIDAL
 			float line_spacing = 1.5;
 			float letter_spacing = 1;
 
-			TextStyle style = Regular;
+			Style style = Regular;
 			Color color;
 			Color outline_color = { 0, 0, 0, 0 };
 			float outline_thickness = 0;
@@ -82,10 +87,10 @@ namespace VIDAL
 	class Application
 	{
 	public:
-		static void Initialize(const Window& window, const std::vector<Text::Text>& texts, Text::Color windowColor);
+		static void Initialize(const Window& window, const std::vector<Text::Text>& texts, Color windowColor);
 		
 		Window window;
-		Text::Color window_color;
+		Color window_color;
 		std::vector<sf::Text> sf_texts;
 	
 	private:
