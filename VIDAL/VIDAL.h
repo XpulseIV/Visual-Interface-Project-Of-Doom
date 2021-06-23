@@ -29,7 +29,7 @@ namespace VIDAL
 	
 	struct Color
 	{
-		uint8_t r, b, g, ALPHA = 255;
+		uint8_t r, b, g, alpha = 255;
 	};
 
 	struct Pos
@@ -44,7 +44,7 @@ namespace VIDAL
 
 	struct Origin
 	{
-		float origin_x, origin_y;
+		float x, y;
 	};
 	
 	class Window
@@ -79,7 +79,6 @@ namespace VIDAL
 		
 		Window window;
 		Color window_color;
-		std::vector<Text> texts;
 		std::vector<sf::Text> sf_texts;
 	
 	private:
