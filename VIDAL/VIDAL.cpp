@@ -11,7 +11,7 @@
 namespace VIDAL
 {
 	// Application Methods
-	void Application::Initialize(const Window& window, const std::vector<Text>& texts, const Color windowColor)
+	void Application::Initialize(const Window& window, const std::vector<Text::Text>& texts, const Text::Color windowColor)
 	{
 		Application application;
 		application.window = window; // Having a window is required
@@ -33,7 +33,7 @@ namespace VIDAL
 
 			std::vector<sf::Text> sfTexts;
 
-			for (const VIDAL::Text& t : texts)
+			for (const VIDAL::Text::Text& t : texts)
 			{
 				sf::Text text;
 				text.setFont(font);
