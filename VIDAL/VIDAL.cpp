@@ -47,7 +47,7 @@ namespace VIDAL
 				
 				text.setOutlineColor(sf::Color(t.outline_color.r, t.outline_color.g, t.outline_color.b, t.outline_color.ALPHA));
 				text.setOutlineThickness(t.outline_thickness);
-				text.setPosition(t.pos.x, t.pos.y);
+				text.setPosition(t.pos.x, t.pos.x);
 				text.rotate(t.angle);
 				text.setScale(t.scale.factor_x, t.scale.factor_y);
 				text.setOrigin(t.origin.origin_x, t.origin.origin_y);
@@ -90,7 +90,7 @@ namespace VIDAL
 			// Here Render Stuff
 
 			// TextRenderer
-			for (auto t : application.sf_texts) render_window.draw(t);
+			for (const auto& t : application.sf_texts) render_window.draw(t);
 			//
 
 			
