@@ -18,21 +18,32 @@ namespace VIDAL
 	{
 		class Shape
 		{
-			Color color = {};
-			
+			Texture texture;
+			TextureRect textureRect;
+			Color color;
+			Color outlineColor;
+			float outlineThickness;
+			Pos pos;
+			float angle;
+			Scale scale;
+			Origin origin;
 		};
 		
 		class Rectangle : Shape
 		{
-			
+			RectSize size;
 		};
+		
 		class RegularPolygon : Shape
 		{
-			
+			float radius;
+			unsigned int pointCount;
 		};
+		
 		class ConvexShape : Shape
 		{
-			
+			unsigned int pointCount;
+			Points points;
 		};
 	}
 	

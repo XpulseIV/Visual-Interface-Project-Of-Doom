@@ -28,4 +28,22 @@ namespace VIDAL
 	{
 		std::string name, path;
 	};
+
+	struct TextureRect : Texture
+	{
+		unsigned int left;
+		unsigned int top;
+		unsigned int width;
+		unsigned int height;
+	};
+
+	struct Points : Pos
+	{
+		unsigned int index;
+	};
+
+	struct RectSize
+	{
+		unsigned int width, height;
+	};
 }
