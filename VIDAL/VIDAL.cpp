@@ -8,16 +8,57 @@
 #include <vector>
 #include <map>
 
+// If mouse is within a object, return true. Otherwise, return false
+bool isWithin(sf::Vector2i mouse_pos, sf::RectangleShape object)
+{
+	auto low = object.getPosition();
+	auto high = low + object.getSize();
+	bool within_on_x = low.x < mouse_pos.x && high.x > mouse_pos.x;
+	bool within_on_y = low.y < mouse_pos.y && high.y > mouse_pos.y;
+
+	if (within_on_x && within_on_y)
+		return true;
+	return false;
+}
+
+
 namespace VIDAL
 {
+	// Button Methods
+	namespace Button
+	{
+		void Button::OnClick()
+		{
+			on_click();
+		}
+	}
+	
 	// Application Methods
-	void Application::Initialize(const Window& window, const std::vector<Text::Text>& texts, const Color windowColor, std::vector<VIDAL::Shape::Rectangle> rectangle_shapes, std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes, std::vector<VIDAL::Shape::ConvexShape> convex_shapes)
+	void Application::Initialize(const Window& window,
+								 const std::vector<Text::Text>& texts,
+								 const Color windowColor,
+								 std::vector<VIDAL::Shape::Rectangle> rectangle_shapes,
+								 std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes,
+								 std::vector<VIDAL::Shape::ConvexShape> convex_shapes,
+								 std::vector<VIDAL::Button::Button> buttons)
 	{
 		Application application;
 		application.window = window; // Having a window is required
 		application.window_color = windowColor; // Color of the window BackGround
 
 		// Loads all texts from std::vector<Text> to std::vector<sf::text> to be rendered later
+
+		#pragma region Button handling
+
+		if(!buttons.empty())
+		{
+			for (auto button : buttons)
+			{
+				rectangle_shapes.push_back(button.shape);
+			}
+		}
+		
+		#pragma endregion 
 
 		#pragma region textHandling
 		
@@ -153,6 +194,8 @@ namespace VIDAL
 
 		while (render_window.isOpen())
 		{
+			#pragma region Events
+			
 			sf::Event event{};
 
 			while (render_window.pollEvent(event))
@@ -170,6 +213,23 @@ namespace VIDAL
 				}
 			}
 
+			#pragma endregion
+
+			#pragma region Input
+
+			
+			
+			auto mouse_pos = sf::Mouse::getPosition(render_window);
+
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isWithin(mouse_pos, ))
+			{
+				
+			}
+			
+			#pragma endregion 
+
+			
+			#pragma region Rendering
 			render_window.clear(sf::Color(application.window_color.r, application.window_color.g, application.window_color.b, application.window_color.alpha));
 
 			// Here Render Stuff
@@ -184,6 +244,7 @@ namespace VIDAL
 
 			
 			render_window.display();
+			#pragma endregion 
 		}
 	}
 }
