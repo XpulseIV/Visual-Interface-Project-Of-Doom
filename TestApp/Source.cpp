@@ -20,6 +20,8 @@ int main()
 	};
 	
 	const std::vector texts = {lol1, lol2};
+
+	VIDAL::Button::Button button;
 	
 	VIDAL::Application::Initialize(window, texts, windowColor);
 	return 0;
