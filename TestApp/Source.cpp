@@ -11,18 +11,22 @@ int main()
 	window.title = "Test Window";
 	const VIDAL::Color windowColor = {0, 0, 0, 255};
 
-	// Window Contents
-	const VIDAL::Text::Text lol1 = {
-		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 0, 255, 255}, .pos = {0, 0}
+	const VIDAL::Text::Text lol{
+		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 255, 0, 255}
 	};
-	const VIDAL::Text::Text lol2 = {
-		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Bold, .color = {0, 0, 255, 255}, .pos = {0, 50}
-	};
-	
-	const std::vector texts = {lol1, lol2};
 
-	VIDAL::Button::Button button;
+	const VIDAL::Shape::RegularPolygon lolPolygon = {
+		.radius = 50, .pointCount = 3, .color = {0,255, 245, 255}
+	};
 	
-	VIDAL::Application::Initialize(window, texts, windowColor);
+	// Vectors
+	std::vector<VIDAL::Text::Text> texts = {lol};
+	std::vector<VIDAL::Shape::Rectangle> rectangle_shapes;
+	std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes = {lolPolygon};
+	std::vector<VIDAL::Shape::ConvexShape> convex_shapes;
+
+	
+	
+	VIDAL::Application::Initialize(window, texts, windowColor, rectangle_shapes, normal_polygon_shapes, convex_shapes);
 	return 0;
 }

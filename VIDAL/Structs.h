@@ -6,7 +6,7 @@ namespace VIDAL
 {
 	struct Color
 	{
-		uint8_t r, g, b, alpha = 255;
+		uint8_t r{}, g{}, b{}, alpha = 255;
 	};
 
 	struct Pos
@@ -29,21 +29,23 @@ namespace VIDAL
 		std::string name, path;
 	};
 
-	struct TextureRect : Texture
+	struct TextureRect
 	{
+		std::string name, path;
 		unsigned int left;
 		unsigned int top;
 		unsigned int width;
 		unsigned int height;
 	};
 
-	struct Points : Pos
+	struct Points
 	{
 		unsigned int index;
+		float x, y;
 	};
 
 	struct RectSize
 	{
-		unsigned int width, height;
+		float width, height;
 	};
 }
