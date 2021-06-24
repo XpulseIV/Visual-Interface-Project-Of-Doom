@@ -10,10 +10,12 @@
 namespace VIDAL
 {
 	namespace Shape
-	{
-		class Shape
+	{	
+		class Rectangle
 		{
-			Color color = {};
+		public:
+			int lol;
+			RectSize size;
 			Texture texture;
 			TextureRect textureRect;
 			Color color;
@@ -25,21 +27,36 @@ namespace VIDAL
 			Origin origin;
 		};
 		
-		class Rectangle : Shape
+		class RegularPolygon
 		{
-			RectSize size;
-		};
-		
-		class RegularPolygon : Shape
-		{
+		public:
 			float radius;
 			unsigned int pointCount;
+			Texture texture;
+			TextureRect textureRect;
+			Color color;
+			Color outlineColor;
+			float outlineThickness;
+			Pos pos;
+			float angle;
+			Scale scale;
+			Origin origin;
 		};
 		
-		class ConvexShape : Shape
+		class ConvexShape
 		{
+		public:
 			unsigned int pointCount;
 			Points points;
+			Texture texture;
+			TextureRect textureRect;
+			Color color;
+			Color outlineColor;
+			float outlineThickness;
+			Pos pos;
+			float angle;
+			Scale scale;
+			Origin origin;
 		};
 	}
 	
@@ -89,7 +106,7 @@ namespace VIDAL
 		class Button
 		{
 		public:
-			Shape::Shape shape;
+			Shape::Rectangle shape;
 		};
 	}
 	
@@ -103,11 +120,14 @@ namespace VIDAL
 	class Application
 	{
 	public:
-		static void Initialize(const Window& window, const std::vector<Text::Text>& texts, Color windowColor);
+		static void Initialize(const Window& window, const std::vector<Text::Text>& texts, const Color windowColor, std::vector<VIDAL::Shape::Rectangle> rectangle_shapes, std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes, std::vector<VIDAL::Shape::ConvexShape> convex_shapes);
 		
 		Window window;
 		Color window_color;
 		std::vector<sf::Text> sf_texts;
+		std::vector<sf::RectangleShape> sf_rect_shapes;
+		std::vector<sf::CircleShape> sf_circle_shapes;
+		std::vector<sf::ConvexShape> sf_convex_shapes;
 	
 	private:
 		static void Main_Loop(VIDAL::Application application);
