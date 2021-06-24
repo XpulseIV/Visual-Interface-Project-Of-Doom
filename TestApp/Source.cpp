@@ -15,11 +15,8 @@ int main()
 	const VIDAL::Text::Text lol1 = {
 		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 0, 255, 255}, .pos = {0, 0}
 	};
-	const VIDAL::Text::Text lol2 = {
-		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Bold, .color = {0, 0, 255, 255}, .pos = {0, 50}
-	};
 	
-	const std::vector texts = {lol1, lol2};
+	const std::vector texts = {lol1};
 	
 	VIDAL::Application::Initialize(window, texts, windowColor);
 	return 0;
