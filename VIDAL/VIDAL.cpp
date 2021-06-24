@@ -18,6 +18,13 @@ namespace VIDAL
 		application.window_color = windowColor; // Color of the window BackGround
 
 		// Loads all texts from std::vector<Text> to std::vector<sf::text> to be rendered later
+
+		sf::Font font;
+		if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
+		{
+			std::cout << "Failed to load font file\n";
+			exit(EXIT_FAILURE);
+		}
 		
 		if (!texts.empty())
 		{
@@ -26,12 +33,7 @@ namespace VIDAL
 			std::vector<sf::Text> sfTexts;
 
 			// Loading the font from the file
-			sf::Font font;
-			if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
-			{
-				std::cout << "Failed to load font file\n";
-				exit(EXIT_FAILURE);
-			}
+			
 
 			for (const VIDAL::Text::Text& t : texts)
 			{

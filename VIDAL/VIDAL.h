@@ -13,7 +13,6 @@ namespace VIDAL
 	{
 		class Shape
 		{
-			Color color = {};
 			Texture texture;
 			TextureRect textureRect;
 			Color color;
