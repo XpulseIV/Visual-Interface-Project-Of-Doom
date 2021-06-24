@@ -12,13 +12,17 @@ int main()
 	const VIDAL::Color windowColor = {0, 0, 0, 255};
 
 	const VIDAL::Text::Text lol{
-		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 0, 255, 255}
+		.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 255, 0, 255}
+	};
+
+	const VIDAL::Shape::RegularPolygon lolPolygon = {
+		.radius = 50, .pointCount = 3, .color = {0,255, 245, 255}
 	};
 	
 	// Vectors
 	std::vector<VIDAL::Text::Text> texts = {lol};
 	std::vector<VIDAL::Shape::Rectangle> rectangle_shapes;
-	std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes;
+	std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes = {lolPolygon};
 	std::vector<VIDAL::Shape::ConvexShape> convex_shapes;
 
 	
