@@ -66,13 +66,77 @@ namespace VIDAL
 
 		if (!rectangle_shapes.empty())
 		{
+			std::vector<sf::RectangleShape> rectangle_shapesLoL;
 			for (VIDAL::Shape::Rectangle rS : rectangle_shapes)
 			{
 				sf::RectangleShape rShape;
 				rShape.setSize(sf::Vector2f(rS.size.width, rS.size.height));
 				// Textures goes here
-				
+				rShape.setFillColor(sf::Color(rS.color.r, rS.color.g, rS.color.b, rS.color.alpha));
+				rShape.setOutlineColor(sf::Color(rS.outlineColor.r, rS.outlineColor.g, rS.outlineColor.b, rS.outlineColor.alpha));
+				rShape.setOutlineThickness(rS.outlineThickness);
+				rShape.setPosition(rS.pos.x, rS.pos.y);
+				rShape.setRotation(rS.angle);
+				rShape.setScale(rS.scale.factor_x, rS.scale.factor_y);
+				rShape.setOrigin(rS.origin.x, rS.origin.y);
+
+				rectangle_shapesLoL.push_back(rShape);
 			}
+			
+			application.sf_rect_shapes = rectangle_shapesLoL;
+		}
+
+		if (!normal_polygon_shapes.empty())
+		{
+			std::vector<sf::CircleShape> normal_polygon_shapesLOL;
+			for (VIDAL::Shape::RegularPolygon rPS : normal_polygon_shapes)
+			{
+				sf::CircleShape regularPolygonShape;
+
+				regularPolygonShape.setRadius(rPS.radius);
+				regularPolygonShape.setPointCount(rPS.pointCount);
+				// Textures goes here
+				regularPolygonShape.setFillColor(sf::Color(rPS.color.r, rPS.color.g, rPS.color.b, rPS.color.alpha));
+				regularPolygonShape.setOutlineColor(sf::Color(rPS.outlineColor.r, rPS.outlineColor.g, rPS.outlineColor.b, rPS.outlineColor.alpha));
+				regularPolygonShape.setOutlineThickness(rPS.outlineThickness);
+				regularPolygonShape.setPosition(rPS.pos.x, rPS.pos.y);
+				regularPolygonShape.setRotation(rPS.angle);
+				regularPolygonShape.setScale(rPS.scale.factor_x, rPS.scale.factor_y);
+				regularPolygonShape.setOrigin(rPS.origin.x, rPS.origin.y);
+				
+				normal_polygon_shapesLOL.push_back(regularPolygonShape);
+			}
+
+			application.sf_circle_shapes = normal_polygon_shapesLOL;
+		}
+
+		if (!convex_shapes.empty())
+		{
+			std::vector<sf::ConvexShape> convex_shapesLOL;
+			for (VIDAL::Shape::ConvexShape cS : convex_shapes)
+			{
+				sf::ConvexShape convexShape;
+
+				convexShape.setPointCount(cS.pointCount);
+
+				for (int i = 0; i < cS.pointCount - 1; i++)
+				{
+					convexShape.setPoint(cS.points[i].index, (sf::Vector2f(cS.points[i].x, cS.points[i].y)));
+				}
+
+				// Textures goes here
+				convexShape.setFillColor(sf::Color(cS.color.r, cS.color.g, cS.color.b, cS.color.alpha));
+				convexShape.setOutlineColor(sf::Color(cS.outlineColor.r, cS.outlineColor.g, cS.outlineColor.b, cS.outlineColor.alpha));
+				convexShape.setOutlineThickness(cS.outlineThickness);
+				convexShape.setPosition(cS.pos.x, cS.pos.y);
+				convexShape.setRotation(cS.angle);
+				convexShape.setScale(cS.scale.factor_x, cS.scale.factor_y);
+				convexShape.setOrigin(cS.origin.x, cS.origin.y);
+
+				convex_shapesLOL.push_back(convexShape);
+			}
+
+			application.sf_convex_shapes = convex_shapesLOL;
 		}
 		
 		#pragma endregion
@@ -108,9 +172,13 @@ namespace VIDAL
 
 			// Here Render Stuff
 
+			// ShapeRenderer shapes
+			for (auto rShape : application.sf_rect_shapes) render_window.draw(rShape);
+			for (auto nPShape : application.sf_circle_shapes) render_window.draw(nPShape);
+			for (auto cShape : application.sf_convex_shapes) render_window.draw(cShape);
+			
 			// TextRenderer
 			for (auto t : application.sf_texts) render_window.draw(t);
-			//
 
 			
 			render_window.display();

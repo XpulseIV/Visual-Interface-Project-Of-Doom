@@ -14,17 +14,16 @@ namespace VIDAL
 		class Rectangle
 		{
 		public:
-			int lol;
 			RectSize size;
 			Texture texture;
 			TextureRect textureRect;
 			Color color;
-			Color outlineColor;
-			float outlineThickness;
+			Color outlineColor = {0, 0, 0, 0,};
+			float outlineThickness = 0;
 			Pos pos;
-			float angle;
-			Scale scale;
-			Origin origin;
+			float angle = 0;
+			Scale scale = {1, 1};
+			Origin origin = {0, 0};
 		};
 		
 		class RegularPolygon
@@ -35,28 +34,28 @@ namespace VIDAL
 			Texture texture;
 			TextureRect textureRect;
 			Color color;
-			Color outlineColor;
-			float outlineThickness;
+			Color outlineColor = { 0, 0, 0, 0, };
+			float outlineThickness = 0;
 			Pos pos;
-			float angle;
-			Scale scale;
-			Origin origin;
+			float angle = 0;
+			Scale scale = { 1, 1 };
+			Origin origin = { 0, 0 };
 		};
 		
 		class ConvexShape
 		{
 		public:
 			unsigned int pointCount;
-			Points points;
+			std::vector<Points> points;
 			Texture texture;
 			TextureRect textureRect;
 			Color color;
-			Color outlineColor;
-			float outlineThickness;
+			Color outlineColor = { 0, 0, 0, 0, };
+			float outlineThickness = 0;
 			Pos pos;
-			float angle;
-			Scale scale;
-			Origin origin;
+			float angle = 0;
+			Scale scale = { 1, 1 };
+			Origin origin = { 0, 0 };
 		};
 	}
 	
