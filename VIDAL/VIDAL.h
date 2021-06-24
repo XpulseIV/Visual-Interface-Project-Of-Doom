@@ -106,6 +106,9 @@ namespace VIDAL
 		{
 		public:
 			Shape::Rectangle shape;
+			void (*on_click) ();
+		private:
+			void OnClick();
 		};
 	}
 	
@@ -119,7 +122,13 @@ namespace VIDAL
 	class Application
 	{
 	public:
-		static void Initialize(const Window& window, const std::vector<Text::Text>& texts, const Color windowColor, std::vector<VIDAL::Shape::Rectangle> rectangle_shapes, std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes, std::vector<VIDAL::Shape::ConvexShape> convex_shapes);
+		static void Initialize(const Window& window, 
+							   const std::vector<Text::Text>& texts, 
+							   const Color windowColor, 
+							   std::vector<VIDAL::Shape::Rectangle> rectangle_shapes, 
+							   std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes, 
+							   std::vector<VIDAL::Shape::ConvexShape> convex_shapes, 
+							   std::vector<VIDAL::Button::Button> buttons);
 		
 		Window window;
 		Color window_color;
