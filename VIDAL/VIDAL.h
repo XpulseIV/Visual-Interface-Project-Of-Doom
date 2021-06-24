@@ -9,17 +9,11 @@
 
 namespace VIDAL
 {
-	namespace Button
-	{
-		
-	}
-
 	namespace Shape
 	{
 		class Shape
 		{
 			Color color = {};
-			
 		};
 		
 		class Rectangle : Shape
@@ -74,6 +68,15 @@ namespace VIDAL
 			float angle = 0;
 			Scale scale = { 1, 1 };
 			Origin origin = { 0, 0 };
+		};
+	}
+
+	namespace Button
+	{
+		class Button
+		{
+		public:
+			Shape::Shape shape;
 		};
 	}
 	
