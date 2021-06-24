@@ -11,7 +11,7 @@
 namespace VIDAL
 {
 	// Application Methods
-	void Application::Initialize(const Window& window, const std::vector<Text::Text>& texts, const Color windowColor, const std::vector<std::vector<>> shapeListList)
+	void Application::Initialize(const Window& window, const std::vector<Text::Text>& texts, const Color windowColor, std::vector<VIDAL::Shape::Rectangle> rectangle_shapes, std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes, std::vector<VIDAL::Shape::ConvexShape> convex_shapes)
 	{
 		Application application;
 		application.window = window; // Having a window is required
@@ -64,9 +64,15 @@ namespace VIDAL
 		
 		#pragma region loadShapeObjects
 
-		if ()
+		if (!rectangle_shapes.empty())
 		{
-			
+			for (VIDAL::Shape::Rectangle rS : rectangle_shapes)
+			{
+				sf::RectangleShape rShape;
+				rShape.setSize(sf::Vector2f(rS.size.width, rS.size.height));
+				// Textures goes here
+				
+			}
 		}
 		
 		#pragma endregion

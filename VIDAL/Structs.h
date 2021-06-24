@@ -6,7 +6,7 @@ namespace VIDAL
 {
 	struct Color
 	{
-		uint8_t r, b, g, alpha = 255;
+		uint8_t r{}, b{}, g{}, alpha = 255;
 	};
 
 	struct Pos
