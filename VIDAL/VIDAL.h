@@ -132,8 +132,12 @@ namespace VIDAL
 		
 		Window window;
 		Color window_color;
+
+		std::vector<void(*)()> button_events;
+		
 		std::vector<sf::Text> sf_texts;
 		std::vector<sf::RectangleShape> sf_rect_shapes;
+		std::vector<sf::RectangleShape> button_shapes;
 		std::vector<sf::CircleShape> sf_circle_shapes;
 		std::vector<sf::ConvexShape> sf_convex_shapes;
 	

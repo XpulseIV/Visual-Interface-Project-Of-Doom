@@ -50,12 +50,31 @@ namespace VIDAL
 
 		#pragma region Button handling
 
-		if(!buttons.empty())
+		if (!buttons.empty())
 		{
-			for (auto button : buttons)
+			std::vector<sf::RectangleShape> buttonShapes;
+			std::vector<void(*)()> buttonEvents;
+			for (VIDAL::Button::Button button : buttons)
 			{
-				rectangle_shapes.push_back(button.shape);
+				auto rS = button.shape;
+				sf::RectangleShape rShape;
+				rShape.setSize(sf::Vector2f(rS.size.width, rS.size.height));
+				// Textures goes here
+				rShape.setFillColor(sf::Color(rS.color.r, rS.color.g, rS.color.b, rS.color.alpha));
+				rShape.setOutlineColor(sf::Color(rS.outlineColor.r, rS.outlineColor.g, rS.outlineColor.b, rS.outlineColor.alpha));
+				rShape.setOutlineThickness(rS.outlineThickness);
+				rShape.setPosition(rS.pos.x, rS.pos.y);
+				rShape.setRotation(rS.angle);
+				rShape.setScale(rS.scale.factor_x, rS.scale.factor_y);
+				rShape.setOrigin(rS.origin.x, rS.origin.y);
+
+				buttonEvents.push_back(button.on_click);
+
+				buttonShapes.push_back(rShape);
 			}
+
+			application.button_events = buttonEvents;
+			application.button_shapes = buttonShapes;
 		}
 		
 		#pragma endregion 
@@ -194,6 +213,8 @@ namespace VIDAL
 
 		while (render_window.isOpen())
 		{
+			bool leftMouseReleased = false;
+
 			#pragma region Events
 			
 			sf::Event event{};
@@ -211,6 +232,10 @@ namespace VIDAL
 					sf::FloatRect visibleArea(0, 0, static_cast<float>(application.window.width), static_cast<float>(application.window.height));
 					render_window.setView(sf::View(visibleArea));
 				}
+				if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left)
+				{
+					leftMouseReleased = true;
+				}
 			}
 
 			#pragma endregion
@@ -221,9 +246,15 @@ namespace VIDAL
 			
 			auto mouse_pos = sf::Mouse::getPosition(render_window);
 
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && isWithin(mouse_pos, ))
+			if(leftMouseReleased)
 			{
-				
+				for (int i = 0; i < application.button_shapes.capacity(); i++)
+				{
+					if (isWithin(mouse_pos, application.button_shapes[i]))
+					{
+						application.button_events[i]();
+					}
+				}
 			}
 			
 			#pragma endregion 
@@ -238,6 +269,7 @@ namespace VIDAL
 			for (auto rShape : application.sf_rect_shapes) render_window.draw(rShape);
 			for (auto nPShape : application.sf_circle_shapes) render_window.draw(nPShape);
 			for (auto cShape : application.sf_convex_shapes) render_window.draw(cShape);
+			for (auto bShape : application.button_shapes) render_window.draw(bShape);
 			
 			// TextRenderer
 			for (auto t : application.sf_texts) render_window.draw(t);

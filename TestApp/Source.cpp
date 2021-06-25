@@ -4,7 +4,7 @@
 
 void ButtonClick()
 {
-	std::cout << "clicked" << std::endl;
+	std::cout << "Clicked" << std::endl;
 }
 
 int main()
@@ -24,6 +24,7 @@ int main()
 		.size = {50, 50}, .color = {0,255, 0, 255}, .pos = {100, 100}
 	};
 
+
 	const VIDAL::Shape::RegularPolygon lolPolygon = {
 		.radius = 50, .pointCount = 3, .color = {0,255, 245, 255}
 	};
@@ -31,9 +32,9 @@ int main()
 	VIDAL::Button::Button button = { .shape = buttonShape, .on_click = &ButtonClick };
 	
 	// Vectors
-	std::vector<VIDAL::Text::Text> texts = {lol};
+	std::vector<VIDAL::Text::Text> texts;
 	std::vector<VIDAL::Shape::Rectangle> rectangle_shapes;
-	std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes = {lolPolygon};
+	std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes;
 	std::vector<VIDAL::Shape::ConvexShape> convex_shapes;
 	std::vector<VIDAL::Button::Button> buttons = { button };
 
