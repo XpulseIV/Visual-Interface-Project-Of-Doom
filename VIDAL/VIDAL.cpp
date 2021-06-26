@@ -28,13 +28,7 @@ bool isWithin(sf::Vector2i mouse_pos, sf::RectangleShape object)
 
 namespace VIDAL
 {
-	// Button Methods
-	namespace Button
 	{
-		void Button::OnClick()
-		{
-			on_click();
-		}
 	}
 	
 	// Application Methods
@@ -57,8 +51,8 @@ namespace VIDAL
 		if (!buttons.empty())
 		{
 			std::vector<sf::RectangleShape> buttonShapes;
-			std::vector<void(*)()> buttonEvents;
 			for (VIDAL::Button::Button button : buttons)
+			std::vector<void(*)(void*)> buttonEvents;
 			{
 				auto rS = button.shape;
 				sf::RectangleShape rShape;
@@ -210,6 +204,11 @@ namespace VIDAL
 		Main_Loop(application); // Main program
 	}
 
+	void Application::ReInit(Application* application, void(*function)(void*))
+	{
+		function(application);
+	}
+
 	void Application::Main_Loop(VIDAL::Application application)
 	{
 		sf::RenderWindow render_window;
@@ -246,8 +245,6 @@ namespace VIDAL
 
 			#pragma region Input
 
-			
-			
 			auto mouse_pos = sf::Mouse::getPosition(render_window);
 
 			if(leftMouseReleased)
@@ -256,24 +253,22 @@ namespace VIDAL
 				{
 					if (isWithin(mouse_pos, application.button_shapes[i]))
 					{
-						application.button_events[i]();
+						ReInit(&application, application.button_events[i]);
 					}
 				}
 			}
 			
 			#pragma endregion 
 
-			
 			#pragma region Rendering
 			render_window.clear(sf::Color(application.window_color.r, application.window_color.g, application.window_color.b, application.window_color.alpha));
 
 			// Here Render Stuff
-
 			// ShapeRenderer shapes
 			for (auto rShape : application.sf_rect_shapes) render_window.draw(rShape);
 			for (auto nPShape : application.sf_circle_shapes) render_window.draw(nPShape);
 			for (auto cShape : application.sf_convex_shapes) render_window.draw(cShape);
-			for (auto bShape : application.button_shapes) render_window.draw(bShape);
+			for (auto bShape : application.button_shapes)
 			
 			// TextRenderer
 			for (auto t : application.sf_texts) render_window.draw(t);
