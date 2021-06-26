@@ -2,9 +2,10 @@
 #include <vector>
 #include <iostream>
 
-void ButtonClick()
+void ButtonClick(void* app)
 {
-	std::cout << "Clicked" << std::endl;
+	auto application = static_cast<VIDAL::Application*> (app);
+	application->button_shapes[0].setFillColor(sf::Color(0, 255, 255, 255));
 }
 
 int main()
