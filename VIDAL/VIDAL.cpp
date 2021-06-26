@@ -13,14 +13,14 @@
 #include <map>
 
 // If mouse is within a object, return true. Otherwise, return false
-bool isWithin(sf::Vector2i mouse_pos, sf::RectangleShape object)
+bool isWithin(sf::Vector2i mouse_pos, const sf::RectangleShape& object)
 {
-	auto low = object.getPosition();
-	auto high = low + object.getSize();
-	bool within_on_x = low.x < mouse_pos.x && high.x > mouse_pos.x;
-	bool within_on_y = low.y < mouse_pos.y && high.y > mouse_pos.y;
+	const auto low = object.getPosition();
+	const auto high = low + object.getSize();
+	const bool withinOnX = low.x < mouse_pos.x && high.x > mouse_pos.x;
+	const bool withinOnY = low.y < mouse_pos.y && high.y > mouse_pos.y;
 
-	if (within_on_x && within_on_y)
+	if (withinOnX && withinOnY)
 		return true;
 	return false;
 }
@@ -28,17 +28,14 @@ bool isWithin(sf::Vector2i mouse_pos, sf::RectangleShape object)
 
 namespace VIDAL
 {
-	{
-	}
-	
 	// Application Methods
 	void Application::Initialize(const Window& window,
 								 const std::vector<Text::Text>& texts,
 								 const Color windowColor,
-								 std::vector<VIDAL::Shape::Rectangle> rectangle_shapes,
-								 std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes,
-								 std::vector<VIDAL::Shape::ConvexShape> convex_shapes,
-								 std::vector<VIDAL::Button::Button> buttons)
+								 const std::vector<VIDAL::Shape::Rectangle>& rectangle_shapes,
+								 const std::vector<VIDAL::Shape::RegularPolygon>& normal_polygon_shapes,
+								 const std::vector<VIDAL::Shape::ConvexShape>& convex_shapes,
+								 const std::vector<VIDAL::Button::Button>& buttons)
 	{
 		Application application;
 		application.window = window; // Having a window is required
@@ -51,8 +48,8 @@ namespace VIDAL
 		if (!buttons.empty())
 		{
 			std::vector<sf::RectangleShape> buttonShapes;
-			for (VIDAL::Button::Button button : buttons)
 			std::vector<void(*)(void*)> buttonEvents;
+			for (const VIDAL::Button::Button& button : buttons)
 			{
 				auto rS = button.shape;
 				sf::RectangleShape rShape;
@@ -127,7 +124,7 @@ namespace VIDAL
 		if (!rectangle_shapes.empty())
 		{
 			std::vector<sf::RectangleShape> rectangle_shapesLoL;
-			for (VIDAL::Shape::Rectangle rS : rectangle_shapes)
+			for (const VIDAL::Shape::Rectangle& rS : rectangle_shapes)
 			{
 				sf::RectangleShape rShape;
 				rShape.setSize(sf::Vector2f(rS.size.width, rS.size.height));
@@ -149,7 +146,7 @@ namespace VIDAL
 		if (!normal_polygon_shapes.empty())
 		{
 			std::vector<sf::CircleShape> normal_polygon_shapesLOL;
-			for (VIDAL::Shape::RegularPolygon rPS : normal_polygon_shapes)
+			for (const VIDAL::Shape::RegularPolygon& rPS : normal_polygon_shapes)
 			{
 				sf::CircleShape regularPolygonShape;
 
@@ -232,7 +229,7 @@ namespace VIDAL
 					application.window.width = event.size.width;
 					application.window.height = event.size.height;
 
-					sf::FloatRect visibleArea(0, 0, static_cast<float>(application.window.width), static_cast<float>(application.window.height));
+					sf::FloatRect visibleArea(0, 0, (application.window.width), (application.window.height));
 					render_window.setView(sf::View(visibleArea));
 				}
 				if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left)
@@ -265,13 +262,13 @@ namespace VIDAL
 
 			// Here Render Stuff
 			// ShapeRenderer shapes
-			for (auto rShape : application.sf_rect_shapes) render_window.draw(rShape);
-			for (auto nPShape : application.sf_circle_shapes) render_window.draw(nPShape);
-			for (auto cShape : application.sf_convex_shapes) render_window.draw(cShape);
-			for (auto bShape : application.button_shapes)
+			for (const auto& rShape : application.sf_rect_shapes) render_window.draw(rShape);
+			for (const auto& nPShape : application.sf_circle_shapes) render_window.draw(nPShape);
+			for (const auto& cShape : application.sf_convex_shapes) render_window.draw(cShape);
+			for (const auto& bShape : application.button_shapes) render_window.draw(bShape);
 			
 			// TextRenderer
-			for (auto t : application.sf_texts) render_window.draw(t);
+			for (const auto& t : application.sf_texts) render_window.draw(t);
 
 			
 			render_window.display();

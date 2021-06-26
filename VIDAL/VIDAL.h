@@ -24,11 +24,11 @@ namespace VIDAL
 	public:
 		static void Initialize(const Window& window, 
 							   const std::vector<Text::Text>& texts, 
-							   const Color windowColor, 
-							   std::vector<VIDAL::Shape::Rectangle> rectangle_shapes, 
-							   std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes, 
-							   std::vector<VIDAL::Shape::ConvexShape> convex_shapes, 
-							   std::vector<VIDAL::Button::Button> buttons);
+							   const Color windowColor,
+							   const std::vector<VIDAL::Shape::Rectangle>& rectangle_shapes,
+							   const std::vector<VIDAL::Shape::RegularPolygon>& normal_polygon_shapes,
+							   const std::vector<VIDAL::Shape::ConvexShape>& convex_shapes,
+							   const std::vector<VIDAL::Button::Button>& buttons);
 		
 		Window window;
 		Color window_color;

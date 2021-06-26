@@ -12,9 +12,7 @@ namespace VIDAL
 		{
 		public:
 			Shape::Rectangle shape;
-			void (*on_click) ();
-		private:
-			void OnClick();
+			void (*on_click) (void*);
 		};
 	}
 }
