@@ -32,6 +32,7 @@ namespace VIDAL
 	struct TextureRect
 	{
 		std::string name, path;
+		
 		unsigned int left;
 		unsigned int top;
 		unsigned int width;
@@ -41,6 +42,7 @@ namespace VIDAL
 	struct Points
 	{
 		unsigned int index;
+
 		float x, y;
 	};
 

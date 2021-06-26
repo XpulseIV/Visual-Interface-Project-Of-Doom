@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "framework.h"
 #include "VIDAL.h"
+#include "Structs.h"
+#include "Shapes.h"
+#include "Texts.h"
+#include "Buttons.h"
 
 #include "SFML/Graphics.hpp"
 

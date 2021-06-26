@@ -1,6 +1,10 @@
 #include "VIDAL.h"
 #include <vector>
 #include <iostream>
+#include "Structs.h"
+#include "Shapes.h"
+#include "Texts.h"
+#include "Buttons.h"
 
 void ButtonClick()
 {
