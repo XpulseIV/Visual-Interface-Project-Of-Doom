@@ -12,6 +12,8 @@
 
 namespace VIDAL
 {
+	bool IsWithin(const sf::Vector2i mouse_pos, const sf::RectangleShape& object);
+	
 	class Window
 	{
 	public:
@@ -22,13 +24,13 @@ namespace VIDAL
 	class Application
 	{
 	public:
-		static void Initialize(const Window& window, 
-							   const std::vector<Text::Text>& texts, 
-							   const Color windowColor,
-							   const std::vector<VIDAL::Shape::Rectangle>& rectangle_shapes,
-							   const std::vector<VIDAL::Shape::RegularPolygon>& normal_polygon_shapes,
-							   const std::vector<VIDAL::Shape::ConvexShape>& convex_shapes,
-							   const std::vector<VIDAL::Button::Button>& buttons);
+		//static void Initialize(const Window& window, 
+		//					   const std::vector<Text::Text>& texts, 
+		//					   const Color windowColor,
+		//					   const std::vector<VIDAL::Shape::Rectangle>& rectangle_shapes,
+		//					   const std::vector<VIDAL::Shape::RegularPolygon>& normal_polygon_shapes,
+		//					   const std::vector<VIDAL::Shape::ConvexShape>& convex_shapes,
+		//					   const std::vector<VIDAL::Button>& buttons);
 		
 		Window window;
 		Color window_color;
