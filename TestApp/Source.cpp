@@ -19,57 +19,33 @@ void Button0Click(void* ptr)
 void Button0Hold(void* ptr)
 {
 	auto button = static_cast<VIDAL::Button*> (ptr);
-	if (button->shape.getFillColor() != sf::Color(0, 200, 255) && !button->is_clicked)
+	if (button->shape.getFillColor() != sf::Color(0, 200, 255))
 		button->shape.setFillColor(sf::Color(0, 200, 255));
+}
+void Button0Hover(void* ptr)
+{
+	auto button = static_cast<VIDAL::Button*> (ptr);
+	if (button->shape.getFillColor() != sf::Color(0, 255, 64) && !button->is_clicked)
+		button->shape.setFillColor(sf::Color(0, 255, 64));
 }
 
 int main()
 {
-	//// Window Settings
-	//VIDAL::Window window;
-	//window.width = 800;
-	//window.height = 600;
-	//window.title = "Test Window";
-	//const VIDAL::Color windowColor = {0, 0, 0, 255};
-	//
-	//const VIDAL::Text::Text lol{
-	//	.text = "lol", .size = 48, .style = VIDAL::Text::Style::Regular, .color = {0, 255, 0, 255}
-	//};
-	//
-	//const VIDAL::Shape::Rectangle buttonShape{
-	//	.size = {50, 50}, .color = {0,255, 0, 255}, .pos = {100, 100}
-	//};
-	//
-	//
-	//const VIDAL::Shape::RegularPolygon lolPolygon = {
-	//	.radius = 50, .pointCount = 3, .color = {0,255, 245, 255}
-	//};
-	//
-	//VIDAL::Button::Button button = { .shape = buttonShape, .on_click = &Button0Click };
-	//
-	//// Vectors
-	//std::vector<VIDAL::Text::Text> texts ={ lol };
-	//std::vector<VIDAL::Shape::Rectangle> rectangle_shapes;
-	//std::vector<VIDAL::Shape::RegularPolygon> normal_polygon_shapes = { lolPolygon };
-	//std::vector<VIDAL::Shape::ConvexShape> convex_shapes;
-	//std::vector<VIDAL::Button::Button> buttons = { button };
-	//
-	//
-	//
-	//VIDAL::Application::Initialize(window, texts, windowColor, rectangle_shapes, normal_polygon_shapes, convex_shapes, buttons);
 
 	sf::RenderWindow window;
 	auto windowColor = sf::Color(255, 255, 255, 255);
 	window.create(sf::VideoMode(800, 600), "Test Window");
+	window.setFramerateLimit(60);
 
+	#pragma region Font loading
 	sf::Font font;
-
 	if (!font.loadFromFile("JetBrainsMono-Medium.ttf"))
 	{
 		std::cout << "Failed to load font file\n";
 		exit(EXIT_FAILURE);
 	}
-
+	#pragma endregion 
+	
 	sf::Text text0;
 	text0.setString("LOL");
 	text0.setFillColor(sf::Color(0, 255, 0));
@@ -86,13 +62,17 @@ int main()
 	std::vector texts { text0 };
 	std::vector buttons { button0 };
 
+	bool holdLeftMouse = false;
+	const int holdThreshold = 30;
+	int holdTime = 0;
+
 	while (window.isOpen())
 	{
 		sf::Keyboard::Key releasedKey;
 		releasedKey = sf::Keyboard::Key::Unknown;
 		sf::Keyboard::Key heldKey = sf::Keyboard::Key::Unknown;
 
-		bool releasedLeftMouse = false, heldLeftMouse = false;
+		bool releasedLeftMouse = false, pressedLeftMouse = false;
 		
 		#pragma region Events
 
@@ -127,7 +107,7 @@ int main()
 			case sf::Event::MouseWheelScrolled: 
 				break;
 			case sf::Event::MouseButtonPressed:
-				heldLeftMouse = true;
+				pressedLeftMouse = true;
 				break;
 			case sf::Event::MouseButtonReleased:
 				releasedLeftMouse = true;
@@ -160,6 +140,17 @@ int main()
 				break;
 			}
 		}
+
+		// Holding left mouse logic
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+			holdTime++;
+		if (releasedLeftMouse)
+		{
+			holdTime = 0;
+			holdLeftMouse = false;
+		}
+		if (holdTime >= holdThreshold)
+			holdLeftMouse = true;
 		
 		#pragma endregion
 		
@@ -180,7 +171,7 @@ int main()
 				}
 			}
 		}
-		if(heldLeftMouse)
+		if(holdLeftMouse)
 		{
 			for (int i = 0; i < buttons.size(); i++)  // Can't use range-based for loop because it copies        NOLINT(modernize-loop-convert)
 			{
