@@ -155,9 +155,7 @@
     <ClInclude Include="Buttons.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Shapes.h" />
     <ClInclude Include="Structs.h" />
-    <ClInclude Include="Texts.h" />
     <ClInclude Include="VIDAL.h" />
   </ItemGroup>
   <ItemGroup>

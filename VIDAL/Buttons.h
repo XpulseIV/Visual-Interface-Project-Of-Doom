@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include "Structs.h"
-#include "Shapes.h"
-#include "Texts.h"
 #include "Buttons.h"
 #include "VIDAL.h"
 

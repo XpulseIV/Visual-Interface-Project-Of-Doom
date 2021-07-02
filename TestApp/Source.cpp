@@ -33,7 +33,7 @@ int main()
 {
 
 	sf::RenderWindow window;
-	auto windowColor = sf::Color(255, 255, 255, 255);
+	auto windowColor = sf::Color(0, 0, 0, 255);
 	window.create(sf::VideoMode(800, 600), "Test Window");
 	window.setFramerateLimit(60);
 
