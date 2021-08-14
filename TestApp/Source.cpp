@@ -2,32 +2,32 @@
 #include <vector>
 #include <iostream>
 
-void Button0Click(void* ptr)
-{
-	auto button = static_cast<VIDAL::Button*> (ptr);
-	if (!button->is_clicked)
-	{
-		button->shape.setFillColor(sf::Color(0, 255, 255, 255));
-		button->is_clicked = true;
-	}
-	else 
-	{
-		button->shape.setFillColor(sf::Color(0, 255, 0, 255));
-		button->is_clicked = false;
-	}
-}
-void Button0Hold(void* ptr)
-{
-	auto button = static_cast<VIDAL::Button*> (ptr);
-	if (button->shape.getFillColor() != sf::Color(0, 200, 255))
-		button->shape.setFillColor(sf::Color(0, 200, 255));
-}
-void Button0Hover(void* ptr)
-{
-	auto button = static_cast<VIDAL::Button*> (ptr);
-	if (button->shape.getFillColor() != sf::Color(0, 255, 64) && !button->is_clicked)
-		button->shape.setFillColor(sf::Color(0, 255, 64));
-}
+// void Button0Click(void* ptr)
+// {
+// 	auto button = static_cast<VIDAL::Button*> (ptr);
+// 	if (!button->is_clicked)
+// 	{
+// 		button->shape.setFillColor(sf::Color(0, 255, 255, 255));
+// 		button->is_clicked = true;
+// 	}
+// 	else 
+// 	{
+// 		button->shape.setFillColor(sf::Color(0, 255, 0, 255));
+// 		button->is_clicked = false;
+// 	}
+// }
+// void Button0Hold(void* ptr)
+// {
+// 	auto button = static_cast<VIDAL::Button*> (ptr);
+// 	if (button->shape.getFillColor() != sf::Color(0, 200, 255))
+// 		button->shape.setFillColor(sf::Color(0, 200, 255));
+// }
+// void Button0Hover(void* ptr)
+// {
+// 	auto button = static_cast<VIDAL::Button*> (ptr);
+// 	if (button->shape.getFillColor() != sf::Color(0, 255, 64) && !button->is_clicked)
+// 		button->shape.setFillColor(sf::Color(0, 255, 64));
+// }
 
 int main()
 {
@@ -52,19 +52,19 @@ int main()
 	text0.setFont(font);
 	text0.setCharacterSize(48);
 
-	VIDAL::Button button0;
-	button0.shape.setSize(sf::Vector2f(50, 50));
-	button0.shape.setFillColor(sf::Color(0, 255, 0));
-	button0.shape.setPosition(sf::Vector2f(100, 100));
-	button0.on_click = &Button0Click;
-	button0.on_held	= &Button0Hold;
+	// VIDAL::Button button0;
+	// button0.shape.setSize(sf::Vector2f(50, 50));
+	// button0.shape.setFillColor(sf::Color(0, 255, 0));
+	// button0.shape.setPosition(sf::Vector2f(100, 100));
+	// button0.on_click = &Button0Click;
+	// button0.on_held	= &Button0Hold;
 
 	std::vector texts { text0 };
-	std::vector buttons { button0 };
+	// std::vector buttons { button0 };
 
-	bool holdLeftMouse = false;
-	const int holdThreshold = 30;
-	int holdTime = 0;
+	// bool holdLeftMouse = false;
+	// const int holdThreshold = 30;
+	// int holdTime = 0;
 
 	while (window.isOpen())
 	{
@@ -142,45 +142,45 @@ int main()
 		}
 
 		// Holding left mouse logic
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-			holdTime++;
-		if (releasedLeftMouse)
-		{
-			holdTime = 0;
-			holdLeftMouse = false;
-		}
-		if (holdTime >= holdThreshold)
-			holdLeftMouse = true;
+		// if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		// 	holdTime++;
+		// if (releasedLeftMouse)
+		// {
+		// 	holdTime = 0;
+		// 	holdLeftMouse = false;
+		// }
+		// if (holdTime >= holdThreshold)
+		// 	holdLeftMouse = true;
 		
 		#pragma endregion
 		
 		#pragma region Changes
 
-		if(heldKey == sf::Keyboard::A)
-			texts[0].setCharacterSize(300);
-		if (releasedKey == sf::Keyboard::A)
-			texts[0].setCharacterSize(48);
+		// if(heldKey == sf::Keyboard::A)
+		// 	texts[0].setCharacterSize(300);
+		// if (releasedKey == sf::Keyboard::A)
+		// 	texts[0].setCharacterSize(48);
 
-		if (releasedLeftMouse)
-		{
-			for (int i = 0; i < buttons.size(); i++)  // Can't use range-based for loop because it copies        NOLINT(modernize-loop-convert)
-			{
-				if (VIDAL::IsWithin(sf::Mouse::getPosition(window), buttons[i].shape))
-				{
-					buttons[i].on_click(&buttons[i]); 
-				}
-			}
-		}
-		if(holdLeftMouse)
-		{
-			for (int i = 0; i < buttons.size(); i++)  // Can't use range-based for loop because it copies        NOLINT(modernize-loop-convert)
-			{
-				if (VIDAL::IsWithin(sf::Mouse::getPosition(window), buttons[i].shape))
-				{
-					buttons[i].on_held(&buttons[i]);
-				}
-			}
-		}
+		// if (releasedLeftMouse)
+		// {
+		// 	for (int i = 0; i < buttons.size(); i++)  // Can't use range-based for loop because it copies        NOLINT(modernize-loop-convert)
+		// 	{
+		// 		if (VIDAL::IsWithin(sf::Mouse::getPosition(window), buttons[i].shape))
+		// 		{
+		// 			buttons[i].on_click(&buttons[i]); 
+		// 		}
+		// 	}
+		// }
+		// if(holdLeftMouse)
+		// {
+		// 	for (int i = 0; i < buttons.size(); i++)  // Can't use range-based for loop because it copies        NOLINT(modernize-loop-convert)
+		// 	{
+		// 		if (VIDAL::IsWithin(sf::Mouse::getPosition(window), buttons[i].shape))
+		// 		{
+		// 			buttons[i].on_held(&buttons[i]);
+		// 		}
+		// 	}
+		// }
 		
 		#pragma endregion
 		
@@ -189,7 +189,7 @@ int main()
 		window.clear(windowColor);
 
 		for (const auto& text : texts) window.draw(text);
-		for (const auto& button : buttons) button.Draw(&window);
+		// for (const auto& button : buttons) button.Draw(&window);
 		
 		window.display();
 		
